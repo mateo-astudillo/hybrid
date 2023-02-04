@@ -8,7 +8,7 @@ class App(CTk):
     def __init__(self):
         super().__init__()
         self.title('Login')
-        self.geometry("350x550")
+        self.geometry("350x530")
 
 
 if __name__ == '__main__':
