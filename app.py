@@ -1,31 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
-from View.view import View
-from Model.model import Model
-from Controller.controller import Controller
+from customtkinter import CTk
+from View import login
 
-class App(tk.Tk):
+
+class App(CTk):
     def __init__(self):
         super().__init__()
-
-        self.title('Tkinter MVC Demo')
-        self.style = ttk.Style(self)
-        self.style.theme_use('clam')
-
-        # create a model
-        model = Model('hello@pythontutorial.net')
-
-        # create a view and place it on the root window
-        view = View(self)
-        view.grid(row=0, column=0, padx=10, pady=10)
-
-        # create a controller
-        controller = Controller(model, view)
-
-        # set the controller to view
-        view.set_controller(controller)
+        self.title('Login')
+        self.geometry("350x530")
 
 
 if __name__ == '__main__':
     app = App()
+    loginFrame = login.Login(app)
     app.mainloop()
