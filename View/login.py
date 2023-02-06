@@ -1,107 +1,101 @@
-import tkinter as tk
-from tkinter import ttk
-from customtkinter import CTkFrame, CTkEntry, CTkButton, CTkImage, CTkLabel
+from customtkinter import CTk, CTkFrame, CTkEntry, CTkButton, CTkImage, CTkLabel, StringVar
 from PIL import Image
 
 
 class Login(CTkFrame):
-    def __init__(self, parent):
-        super().__init__(parent)
-
-        #! Login
-        self.login = CTkFrame(
-            master=parent, fg_color="black")
-        self.login.pack(expand=True, fill="both")
-
-        #! ImgContainer
-        self.imgContainer = CTkFrame(master=self.login)
-        self.imgContainer.pack(fill="both")
+    def __init__(self, master=None):
+        super().__init__(master)
+        master.title("Login")
 
         #! Image
-        self.my_image = CTkImage(
-            dark_image=Image.open("logo.jpg"), size=(350, 180))
+        logo = CTkImage(
+            dark_image=Image.open("View/Assets/logo.jpg"), size=(300, 150)
+            # dark_image=Image.open("Assets/logo.jpg"), size=(350, 150)
+        )
 
         self.image = CTkLabel(
-            master=self.imgContainer,
-            image=self.my_image,
-            text="", )
+            master=self,
+            image=logo,
+            text="",
+        )
 
-        self.image.pack(fill="both")
-
-        #! EntrysContainer
-        self.entrysContainer = CTkFrame(
-            master=self.login, fg_color="transparent")
-        self.entrysContainer.pack(pady=10, ipady=55, ipadx=40)
-
-        #! Username
-        self.username_var = tk.StringVar(value="")
+        #! Entrys
+        username_var = StringVar()
+        password_var = StringVar()
 
         self.username_entry = CTkEntry(
-            master=self.entrysContainer,
-            width=180,
+            master=self,
             placeholder_text="Username",
-            placeholder_text_color="black",
-            text_color="black",
-            fg_color="#fff",
-            font=("Open Sans ExtraBold", 14))
+        )
 
-        self.username_entry.configure(
-            self, corner_radius=27,
-            border_width=0,
-            justify="center")
-
-        self.username_entry.pack(expand=True, ipady=1, ipadx=5)
-
-        #! Password
-        self.password_var = tk.StringVar(value="")
         self.password_entry = CTkEntry(
-            master=self.entrysContainer,
-            width=180,
-            placeholder_text="Password",
-            placeholder_text_color="black",
-            text_color="black", fg_color="#fff",
-            font=("Open Sans ExtraBold", 14))
-
-        self.password_entry.configure(
-            corner_radius=27,
-            border_width=0,
+            master=self,
             show="*",
-            justify="center")
+            placeholder_text="Password",
+        )
 
-        self.password_entry.pack(expand=True, ipady=1, ipadx=7)
-
-        #!! ButtonLogin
+        #! Buttons
         self.button_login = CTkButton(
-            master=self.entrysContainer,
+            master=self,
             text="Login",
-            width=180,)
-
-        self.button_login.configure(
-            corner_radius=27,
-            border_width=0,
+            text_color="black",
             fg_color="#C92C37",
             hover_color="#990510",
-            text_color="black",
-            font=("Open Sans ExtraBold", 14))
+            font=("Open Sans ExtraBold", 14),
+            width=180,
+        )
 
-        self.button_login.pack(expand=True, ipady=1, ipadx=5)
-
-        #! ButtonRegister
         self.button_register = CTkButton(
-            master=self.entrysContainer,
+            master=self,
             text="Register",
-            width=50)
-
-        self.button_register.configure(
-            corner_radius=27,
-            border_width=0,
+            text_color="#fff",
             fg_color="black",
             hover_color="#C92C37",
-            text_color="#fff",
-            font=("Open Sans Light", 14))
+            font=("Open Sans Light", 14),
+            width=50,
+        )
 
-        self.button_register.pack()
+        self.set_config()
+
+        widgets = [
+            self.image,
+            self.username_entry,
+            self.password_entry,
+            self.button_login,
+            self.button_register,
+        ]
+
+        for widget in widgets:
+            widget.pack(pady=15, ipadx=7)
+
+        self.pack(expand=True, fill="both")
+
+    def set_config(self):
+
+        self.configure(fg_color="black")
+
+        for entry in [self.username_entry, self.password_entry]:
+            entry.configure(
+                corner_radius=27,
+                width=180,
+                border_width=0,
+                placeholder_text_color="black",
+                text_color="black",
+                fg_color="#fff",
+                justify="center",
+                font=("Open Sans ExtraBold", 14),
+            )
+
+        for button in [self.button_login, self.button_register]:
+            button.configure(
+                corner_radius=27,
+                border_width=0,
+            )
 
 
 if __name__ == "__main__":
-    pass
+    root = CTk()
+    root.geometry("350x530")
+    root.resizable(width=False, height=False)
+    login = Login(root)
+    root.mainloop()
