@@ -2,29 +2,8 @@ import re
 import sqlite3
 
 class Model:
-    def __init__(self, email):
-        self.email = email
+    def __init__(self):
+        self.controller = None
 
-    @property
-    def email(self):
-        return self.__email
-
-    @email.setter
-    def email(self, value):
-        """
-        Validate the email
-        :param value:
-        :return:
-        """
-        pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-        if re.fullmatch(pattern, value):
-            self.__email = value
-        else:
-            raise ValueError(f'Invalid email address: {value}')
-
-    def save(self):
-        """
-        Save the email into a file
-        :return:
-        """
-
+    def set_controller(self, controller):
+        self.controller = controller

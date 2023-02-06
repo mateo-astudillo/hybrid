@@ -3,21 +3,11 @@ class Controller:
         self.model = model
         self.view = view
 
-    def save(self, email):
+    def check(self, username:str):
         """
-        Save the email
-        :param email:
-        :return:
+        username
         """
-        try:
+        if username == "exit":
+            self.view.hide_login()
+            self.view.show_home()
 
-            # save the model
-            self.model.email = email
-            self.model.save()
-
-            # show a success message
-            self.view.show_success(f'The email {email} saved!')
-
-        except ValueError as error:
-            # show an error message
-            self.view.show_error(error)

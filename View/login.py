@@ -1,11 +1,13 @@
 from customtkinter import CTk, CTkFrame, CTkEntry, CTkButton, CTkImage, CTkLabel, StringVar
 from PIL import Image
+from Controller.controller import Controller
 
 
 class Login(CTkFrame):
     def __init__(self, master=None):
         super().__init__(master)
-        master.title("Login")
+
+        self.controller = None
 
         #! Image
         logo = CTkImage(
@@ -20,9 +22,6 @@ class Login(CTkFrame):
         )
 
         #! Entrys
-        username_var = StringVar()
-        password_var = StringVar()
-
         self.username_entry = CTkEntry(
             master=self,
             placeholder_text="Username",
@@ -43,6 +42,7 @@ class Login(CTkFrame):
             hover_color="#990510",
             font=("Open Sans ExtraBold", 14),
             width=180,
+            command=self.check,
         )
 
         self.button_register = CTkButton(
@@ -68,8 +68,13 @@ class Login(CTkFrame):
         for widget in widgets:
             widget.pack(pady=15, ipadx=7)
 
-        self.pack(expand=True, fill="both")
+    def set_controller(self, controller):
+        self.controller = controller
 
+    def check(self):
+        self.controller.check( self.username_entry.get() )
+        print(self.username_entry.get())
+    
     def set_config(self):
 
         self.configure(fg_color="black")
