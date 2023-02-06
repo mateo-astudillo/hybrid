@@ -1,6 +1,7 @@
 from customtkinter import CTk, CTkFrame, CTkEntry, CTkButton, CTkImage, CTkLabel, StringVar
 from PIL import Image
 
+
 class Login(CTkFrame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -8,14 +9,14 @@ class Login(CTkFrame):
 
         #! Image
         logo = CTkImage(
-            dark_image = Image.open("View/Assets/logo.jpg"), size=(300, 150)
+            dark_image=Image.open("View/Assets/logo.jpg"), size=(300, 150)
             # dark_image=Image.open("Assets/logo.jpg"), size=(350, 150)
         )
 
         self.image = CTkLabel(
-            master = self,
-            image = logo,
-            text = "", 
+            master=self,
+            image=logo,
+            text="",
         )
 
         #! Entrys
@@ -33,7 +34,7 @@ class Login(CTkFrame):
             placeholder_text="Password",
         )
 
-        #! Buttons 
+        #! Buttons
         self.button_login = CTkButton(
             master=self,
             text="Login",
@@ -90,7 +91,7 @@ class Login(CTkFrame):
                 corner_radius=27,
                 border_width=0,
             )
-       
+
 
 if __name__ == "__main__":
     root = CTk()
