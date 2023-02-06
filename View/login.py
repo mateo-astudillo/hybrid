@@ -11,17 +11,15 @@ class Login(CTkFrame):
         #! Login
         self.login = CTkFrame(
             master=parent, fg_color="black")
-        self.login.pack_propagate("False")
         self.login.pack(expand=True, fill="both")
 
         #! ImgContainer
-        self.imgContainer = CTkFrame(master=self.login, fg_color="blue")
-        self.imgContainer.pack_propagate("False")
+        self.imgContainer = CTkFrame(master=self.login)
         self.imgContainer.pack(fill="both")
 
         #! Image
         self.my_image = CTkImage(
-            dark_image=Image.open("logo.jpg"), size=(500, 250))
+            dark_image=Image.open("logo.jpg"), size=(350, 180))
 
         self.image = CTkLabel(
             master=self.imgContainer,
@@ -74,7 +72,9 @@ class Login(CTkFrame):
 
         #!! ButtonLogin
         self.button_login = CTkButton(
-            master=self.entrysContainer, text="Login", width=180)
+            master=self.entrysContainer,
+            text="Login",
+            width=180,)
 
         self.button_login.configure(
             corner_radius=27,
