@@ -8,12 +8,12 @@ if __name__ == "__main__":
 class Login(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
+
 		self.controller = None
 
 		#! Image
 		logo = CTkImage(
-		dark_image=Image.open("View/Assets/logo.jpg"), size=(300, 150)
-			# dark_image=Image.open("Assets/logo.jpg"), size=(350, 150)
+			dark_image = Image.open("Assets/logo.jpg"), size = (300, 150)
 		)
 
 		self.image = CTkLabel(
