@@ -1,7 +1,7 @@
 from customtkinter import CTk
-from View.view import View
-from Model.model import Model
-from Controller.controller import Controller
+from View import View
+from Model import Model
+from Controller import Controller
 
 class App(CTk):
     def __init__(self):

@@ -1,4 +1,4 @@
-class CardDB():
+class UsersManager():
     def __init__(self):
         super().__init__()
 
