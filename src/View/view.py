@@ -14,5 +14,5 @@ class View(CTkFrame):
 		self.home.pack()
 	
 	def hide_login(self):
-		self.login.destroy()
+		self.login.pack_forget()
 

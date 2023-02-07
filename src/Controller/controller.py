@@ -3,9 +3,10 @@ class Controller:
 		self.model = model
 		self.view = view
 
-	def check(self, username:str):
+	def login(self, username:str, password:str):
 		"""
 		username
+		password
 		"""
 		if username == "juan":
 			self.view.hide_login()
