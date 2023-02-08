@@ -13,13 +13,8 @@ class App(CTk):
 		self.controller = Controller(self.model, self.view)
 
 		self.model.set_controller(self.controller)
-		self.view.login.set_controller(self.controller)
-		self.view.menu.set_controller(self.controller)
-		self.view.home.set_controller(self.controller)
-
-		self.view.pack()
-		self.view.login.pack()
-
+		self.view.set_controller(self.controller)
+		self.view.show_login()
 
 if __name__ == '__main__':
 	app = App()

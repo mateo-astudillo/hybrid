@@ -7,6 +7,7 @@ if __name__ == "__main__":
 class Menu(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
+		self.configure(width=300, height=700)
 
 		self.controller = None
 
@@ -23,9 +24,9 @@ class Menu(CTkFrame):
 	def set_items(self):
 		items = [
 			("Menu", "🚗", self.toggle_menu_collapse),
-			("Home", "🏠", None),
+			("Home", "🏠", lambda: self.show_page("home") ),
 			("Stock", "🔎", None),
-			("About", "👥", None),
+			("About", "👥", lambda: self.show_page("about")),
 		]
 		for name, icon, comm in items:
 			self.create_menu_item(name, icon, comm)
@@ -50,6 +51,9 @@ class Menu(CTkFrame):
 			for label in self.menu_labels:
 				label.pack_forget()
 		self.collapse = not self.collapse
+
+	def show_page(self, name_page):
+		self.controller.show_page(name_page)
 
 
 if __name__ == "__main__":

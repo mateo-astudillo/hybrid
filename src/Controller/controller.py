@@ -8,13 +8,15 @@ class Controller:
 		username
 		password
 		"""
-		# Validate
 		self.model.login(username, password)
-		self.view.hide_login()
-		self.view.show_main_page()
-		# if username == "":
-		# 	self.view.show_alert()
+		self.view.hide_page("login")
+		self.view.show_menu()
+		self.view.show_page("home")
 
 	def get_credentials(self):
 		return self.model.get_credentials()
+
+	def show_page(self, name):
+		self.view.show_page(name)
+
 
