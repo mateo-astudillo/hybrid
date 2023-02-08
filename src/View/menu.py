@@ -19,13 +19,13 @@ class Menu(CTkFrame):
 
 	def set_controller(self, controller):
 		self.controller = controller
-		
+
 	def set_items(self):
 		items = [
 			("Menu", "🚗", self.toggle_menu_collapse),
 			("Home", "🏠", None),
 			("Stock", "🔎", None),
-			("About", "A", None),
+			("About", "👥", None),
 		]
 		for name, icon, comm in items:
 			self.create_menu_item(name, icon, comm)
@@ -46,7 +46,7 @@ class Menu(CTkFrame):
 		if self.collapse:
 			for label in self.menu_labels:
 				label.pack(padx=10, pady=5, side="right")
-		else: 
+		else:
 			for label in self.menu_labels:
 				label.pack_forget()
 		self.collapse = not self.collapse
