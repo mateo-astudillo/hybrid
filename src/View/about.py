@@ -1,15 +1,18 @@
 from customtkinter import CTkFrame, CTkLabel, CTkImage, CTkTextbox
 from PIL import Image
-
-PATH_LOGO = "../Assets/logo.jpg"
+from dotenv import load_dotenv
+import os
 
 if __name__ == "__main__":
-	from customtkinter import CTk, CTkTextbox
-	PATH_LOGO = "../../Assets/logo.jpg"
+	from customtkinter import CTk
+
+load_dotenv()
+PATH_LOGO = os.getenv("PATH_LOGO")
+PATH_INFO = os.getenv("PATH_INFO")
 
 
 class About(CTkFrame):
-	def __init__(self, master=None)
+	def __init__(self, master=None):
 		super().__init__(master)
 
 		self.controller = None
@@ -31,7 +34,7 @@ class About(CTkFrame):
 		self.controller = controller
 
 	def get_text_info(self):
-		with open("../../Static/info.txt", "r") as f:
+		with open(PATH_INFO, "r") as f:
 	 	   return f.read()
 
 	def widget_textbox(self):

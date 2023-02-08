@@ -1,12 +1,13 @@
 from customtkinter import CTkFrame, CTkEntry, CTkButton, CTkImage, CTkLabel
 from PIL import Image
+from dotenv import load_dotenv
+import os
 
 if __name__ == "__main__":
 	from customtkinter import CTk
-	PATH_LOGO = "../Assets/logo.jpg"
-else:
-	PATH_LOGO = "Assets/logo.jpg"
 
+load_dotenv()
+PATH_LOGO = os.getenv("PATH_LOGO")
 
 class Login(CTkFrame):
 	def __init__(self, master=None):
