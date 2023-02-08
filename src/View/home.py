@@ -2,8 +2,6 @@ from customtkinter import CTkFrame, CTkLabel, CTkButton
 
 if __name__ == "__main__":
 	from customtkinter import CTk
-else:
-	from Controller import Controller
 
 
 class Home(CTkFrame):

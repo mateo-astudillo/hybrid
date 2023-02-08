@@ -2,8 +2,6 @@ from customtkinter import CTkFrame, CTkLabel, CTkButton
 
 if __name__ == "__main__":
 	from customtkinter import CTk
-else:
-	from Controller import Controller
 
 
 class Menu(CTkFrame):
@@ -52,8 +50,6 @@ class Menu(CTkFrame):
 			for label in self.menu_labels:
 				label.pack_forget()
 		self.collapse = not self.collapse
-
-		
 
 
 if __name__ == "__main__":
