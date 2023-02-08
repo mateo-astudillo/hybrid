@@ -14,6 +14,7 @@ class App(CTk):
 
 		self.model.set_controller(self.controller)
 		self.view.login.set_controller(self.controller)
+		self.view.menu.set_controller(self.controller)
 		self.view.home.set_controller(self.controller)
 
 		self.view.pack()

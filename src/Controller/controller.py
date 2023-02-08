@@ -10,5 +10,5 @@ class Controller:
 		"""
 		if username == "juan":
 			self.view.hide_login()
-			self.view.show_home()
+			self.view.show_main_page()
 
