@@ -1,9 +1,11 @@
 from customtkinter import CTkFrame, CTkEntry, CTkButton, CTkImage, CTkLabel
 from PIL import Image
-from Controller import Controller
 
 if __name__ == "__main__":
 	from customtkinter import CTk
+	PATH_LOGO = "../Assets/logo.jpg"
+else:
+	PATH_LOGO = "Assets/logo.jpg"
 
 
 class Login(CTkFrame):
@@ -13,7 +15,7 @@ class Login(CTkFrame):
 		self.controller = None
 
 		#! Image
-		logo = CTkImage( dark_image = Image.open("Assets/logo.jpg"), size = (300, 150) )
+		logo = CTkImage( dark_image = Image.open(PATH_LOGO), size = (300, 150) )
 
 		self.image = CTkLabel(
 			master = self,
@@ -58,7 +60,7 @@ class Login(CTkFrame):
 
 		self.set_config()
 
-		widgets = [
+		self.widgets = [
 			self.image,
 			self.username_entry,
 			self.password_entry,
@@ -66,10 +68,9 @@ class Login(CTkFrame):
 			self.register_button,
 		]
 
-		for widget in widgets:
-			widget.pack(pady=15, ipadx=7)
+		self.pack_widgets()
 
-	def set_controller(self, controller:Controller):
+	def set_controller(self, controller):
 		self.controller = controller
 
 	def set_config(self):
@@ -94,13 +95,15 @@ class Login(CTkFrame):
 				border_width=0,
 			)
 
+	def pack_widgets(self):
+		for widget in self.widgets:
+			widget.pack(pady=15, ipadx=7)
+
 	def login(self):
 		self.controller.login( self.username_entry.get(), self.password_entry.get() )
 
 	def register(self):
 		pass
-		
-	
 
 
 if __name__ == "__main__":
