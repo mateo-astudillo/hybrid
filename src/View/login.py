@@ -60,7 +60,7 @@ class Login(CTkFrame):
 
 		self.set_config()
 
-		widgets = [
+		self.widgets = [
 			self.image,
 			self.username_entry,
 			self.password_entry,
@@ -96,7 +96,7 @@ class Login(CTkFrame):
 			)
 
 	def pack_widgets(self):
-		for widget in widgets:
+		for widget in self.widgets:
 			widget.pack(pady=15, ipadx=7)
 
 	def login(self):
@@ -104,8 +104,6 @@ class Login(CTkFrame):
 
 	def register(self):
 		pass
-		
-	
 
 
 if __name__ == "__main__":
