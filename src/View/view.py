@@ -23,7 +23,7 @@ class View():
 	def set_config(self):
 		for page in self.pages.values():
 			page.configure(width=800, height=900)
-		self.pages.get(menu).conconfigure(width=400)
+		self.pages.get(Menu).conconfigure(width=400)
 
 	def show_login(self):
 		self.current_page.pack(fill="both")
