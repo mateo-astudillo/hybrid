@@ -11,6 +11,7 @@ class View():
 			"login": Login(master),
 			"menu": Menu(master),
 			"home": Home(master),
+			# "Stock": Stock(master),
 			"about": About(master),
 		}
 
@@ -21,15 +22,13 @@ class View():
 			page.set_controller(controller)
 
 	def set_config(self):
-		for page in self.pages.values():
-			page.configure(width=800, height=900)
-		self.pages.get(menu).conconfigure(width=400)
+		pass
 
 	def show_login(self):
-		self.current_page.pack(fill="both")
+		self.current_page.pack(ipadx=20, ipady=20)
 
 	def show_menu(self):
-		self.pages.get("menu").pack(fill="both", side="left")
+		self.pages.get("menu").pack(side="left")
 	
 	def hide_page(self, name_page:str):
 		self.pages.get(name_page).pack_forget()
@@ -37,5 +36,4 @@ class View():
 	def show_page(self, name_page:str):
 		self.current_page.pack_forget()
 		self.current_page = self.pages.get(name_page)
-		self.current_page.pack(fill="both", side="right", ipadx=20, ipady=20)
-
+		self.current_page.pack(ipadx=20, ipady=20)

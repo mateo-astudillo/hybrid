@@ -14,7 +14,8 @@ class App(CTk):
 
 		self.model.set_controller(self.controller)
 		self.view.set_controller(self.controller)
-		self.view.show_login()
+
+		self.controller.run()
 
 if __name__ == '__main__':
 	app = App()
