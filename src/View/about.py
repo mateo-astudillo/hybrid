@@ -19,7 +19,7 @@ class About(CTkFrame):
 
 		logo = CTkImage(dark_image=Image.open(PATH_LOGO), size=(300, 150))
 		self.widgets = {
-			"image": CTkLabel(master=self, text="", image=PATH_LOGO),
+			"image": CTkLabel(master=self, text="", image=logo),
 			"title": CTkLabel(master=self, text="About Us"),
 			"text": CTkLabel(master=self, text=self.get_info()),
 		}
