@@ -23,7 +23,9 @@ class View():
 
 	def set_config(self):
 		for page in self.pages.values():
-			page.configure(bg_color="transparent", fg_color="transparent")
+
+			page.configure(width=800, height=900)
+		self.pages.get(Menu).conconfigure(width=400)
 
 	def show_login(self):
 		self.current_page.pack(ipadx=20, ipady=20)
