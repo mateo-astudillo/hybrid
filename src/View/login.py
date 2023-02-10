@@ -15,6 +15,7 @@ class Login(CTkFrame):
 
 		self.controller = None
 
+
 		logo = CTkImage( dark_image=Image.open(PATH_LOGO), size=(300, 150) )
 		self.widgets = {
 			"image": CTkLabel(master=self, image=logo, text = ""),
@@ -79,8 +80,8 @@ class Login(CTkFrame):
 
 
 	def login(self):
-		username = self.entrys.get("username")
-		password = self.entrys.get("password")
+		username = self.widgets.get("entries").get("username")
+		password = self.widgets.get("entries").get("password")
 		self.controller.login(username.get(), password.get())
 
 	def register(self):
