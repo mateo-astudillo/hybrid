@@ -21,10 +21,13 @@ class Menu(CTkFrame):
 		self.controller = controller
 
 	def set_config(self):
-		self.configure(bg_color="black")
+		self.configure(bg_color="#C92C37", fg_color="transparent")
 		for item in self.items:
 			item.get("button").configure(
+				text_color = "white",
+				bg_color = "transparent",
 				fg_color = "black",
+				hover_color = "#990510",
 				corner_radius=0,
 				font = ("Open Sans ExtraBold", 24),
 			)
@@ -49,7 +52,7 @@ class Menu(CTkFrame):
 
 	def pack_items(self):
 		for item in self.items:
-			item.get("button").pack(fill="x")
+			item.get("button").pack(fill="both", ipadx=20, ipady=5)
 
 	def toggle_collapse(self):
 		if self.collapse:
