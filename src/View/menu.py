@@ -7,49 +7,60 @@ if __name__ == "__main__":
 class Menu(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
-		self.configure(width=300, height=700)
 
 		self.controller = None
 
 		self.collapse = True
-		self.menu_items = []
-		self.menu_labels = []
+		self.items = []
 
 		self.set_items()
-		self.pack_menu_items()
+		self.set_config()
+		self.pack_items()
 
 	def set_controller(self, controller):
 		self.controller = controller
 
+	def set_config(self):
+		self.configure(bg_color="#C92C37", fg_color="transparent")
+		for item in self.items:
+			item.get("button").configure(
+				text_color = "white",
+				bg_color = "transparent",
+				fg_color = "black",
+				hover_color = "#990510",
+				corner_radius=0,
+				font = ("Open Sans ExtraBold", 24),
+			)
+
 	def set_items(self):
-		items = [
-			("Menu", "🚗", self.toggle_menu_collapse),
-			("Home", "🏠", lambda: self.show_page("home") ),
+		items = (
+			("Menu", "🚗", self.toggle_collapse),
+			("Home", "🏠", lambda: self.show_page("home")),
 			("Stock", "🔎", None),
 			("About", "👥", lambda: self.show_page("about")),
-		]
-		for name, icon, comm in items:
-			self.create_menu_item(name, icon, comm)
+		)
+		for name, icon, command in items:
+			self.create_item(name, icon, command)
 
-	def create_menu_item(self, name:str, icon:str, comm):
-		frm = CTkFrame(master=self)
-		i = CTkButton(master=frm, text=icon, command=comm, width=10)
-		n = CTkButton(master=frm, text=name, command=comm)
-		i.pack(padx=10, pady=5, side="left")
-		self.menu_labels.append(n)
-		self.menu_items.append(frm)
+	def create_item(self, name:str, icon:str, command):
+		item = {
+			"button": CTkButton(master=self, text=f"{icon}", command=command, width=5),
+			"icon": icon,
+			"name": name,
+		}
+		self.items.append(item)
 
-	def pack_menu_items(self):
-		for item in self.menu_items:
-			item.pack(padx=10, pady=10)
+	def pack_items(self):
+		for item in self.items:
+			item.get("button").pack(fill="both", ipadx=20, ipady=5)
 
-	def toggle_menu_collapse(self):
+	def toggle_collapse(self):
 		if self.collapse:
-			for label in self.menu_labels:
-				label.pack(padx=10, pady=5, side="right")
+			for item in self.items:
+				item.get("button").configure(text=f"{item.get('icon')} {item.get('name')}")
 		else:
-			for label in self.menu_labels:
-				label.pack_forget()
+			for item in self.items:
+				item.get("button").configure(text=f"{item.get('icon')}")
 		self.collapse = not self.collapse
 
 	def show_page(self, name_page):
@@ -58,6 +69,7 @@ class Menu(CTkFrame):
 
 if __name__ == "__main__":
 	root = CTk()
+	root.geometry("300x300")
 	menu = Menu(root)
 	menu.pack()
 	root.mainloop()

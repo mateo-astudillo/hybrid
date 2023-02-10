@@ -1,7 +1,13 @@
+from View import View
+from Model import Model
+
 class Controller:
-	def __init__(self, model, view):
+	def __init__(self, model:Model, view:View):
 		self.model = model
 		self.view = view
+
+	def run(self):
+		self.view.show_login()
 
 	def login(self, username:str, password:str):
 		"""

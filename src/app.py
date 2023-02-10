@@ -3,6 +3,8 @@ from View import View
 from Model import Model
 from Controller import Controller
 
+global FONT
+FONT = "Open Sans ExtraBold"
 
 class App(CTk):
 	def __init__(self):
@@ -14,7 +16,8 @@ class App(CTk):
 
 		self.model.set_controller(self.controller)
 		self.view.set_controller(self.controller)
-		self.view.show_login()
+
+		self.controller.run()
 
 if __name__ == '__main__':
 	app = App()
