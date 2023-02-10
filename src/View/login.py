@@ -15,9 +15,10 @@ class Login(CTkFrame):
 
 		self.controller = None
 
-		logo = CTkImage( dark_image=Image.open(PATH_LOGO), size=(300, 150))
+
+		logo = CTkImage( dark_image=Image.open(PATH_LOGO), size=(300, 150) )
 		self.widgets = {
-			"image": CTkLabel(master=self, text = "",image=logo),
+			"image": CTkLabel(master=self, image=logo, text = ""),
 			"buttons": {
 				"login": CTkButton(master=self, text="Login", command=self.login),
 				"register": CTkButton(master=self, text="Register", command=self.register),
