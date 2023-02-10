@@ -1,5 +1,5 @@
-from customtkinter import CTkFrame, CTkLabel, CTkButton
-
+from customtkinter import CTkFrame, CTkLabel, CTkButton, CTkImage
+from PIL import Image
 if __name__ == "__main__":
 	from customtkinter import CTk
 
@@ -9,7 +9,6 @@ class Home(CTkFrame):
 		super().__init__(master)
 
 		self.controller = None
-
 		# Home page
 		self.home_label = CTkLabel(
 			master=self, text="Home Page ",

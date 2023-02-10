@@ -27,7 +27,7 @@ class Menu(CTkFrame):
 				fg_color = "transparent",
 				hover_color = "#990510",
 				corner_radius=0,
-				font = ("Open Sans ExtraBold", 24),
+				font = ("Open Sans Light", 24),
 			)
 
 	def set_items(self):
