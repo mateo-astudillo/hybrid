@@ -11,10 +11,18 @@ class Home(CTkFrame):
 		self.controller = None
 
 		# Home page
-		self.home_label = CTkLabel(master=self, text="Home Page ", width=100, height=30)
+		self.home_label = CTkLabel(
+			master=self, text="Home Page ",
+			width=100, height=30,
+			fg_color="transparent"
+		)
 		self.home_label.pack(padx=50, pady=20)
 
-		self.credentials_button = CTkButton(master=self, text="Get Credentials", command=self.get_credentials)
+		self.credentials_button = CTkButton(
+			master=self, text="Get Credentials",
+			command=self.get_credentials,
+			fg_color="transparent"
+		)
 		self.credentials_button.pack(padx=10)
 
 		self.credentials_label = CTkLabel(master=self, text="Credentials")

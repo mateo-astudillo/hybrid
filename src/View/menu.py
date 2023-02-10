@@ -21,11 +21,9 @@ class Menu(CTkFrame):
 		self.controller = controller
 
 	def set_config(self):
-		self.configure(bg_color="transparent", fg_color="transparent")
 		for item in self.items:
 			item.get("button").configure(
 				text_color = "white",
-				bg_color = "transparent",
 				fg_color = "transparent",
 				hover_color = "#990510",
 				corner_radius=0,

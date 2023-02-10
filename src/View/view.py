@@ -18,6 +18,8 @@ class View(CTk):
 		}
 
 		self.current_page = self.pages.get("login")
+
+		self.set_config()
 	
 	def set_controller(self, controller):
 		for page in self.pages.values():
@@ -25,7 +27,7 @@ class View(CTk):
 
 	def set_config(self):
 		for page in self.pages.values():
-			page.configure(bg_color="transparent", fg_color="transparent")
+			page.configure(fg_color="black", bg_color="black")
 
 	def show_login(self):
 		self.current_page.pack(ipadx=20, ipady=20)
