@@ -7,7 +7,8 @@ if __name__ == "__main__":
 	from customtkinter import CTk
 
 load_dotenv()
-PATH_LOGO = os.getenv("PATH_LOGO")
+ASSETS_PATH = os.getenv("ASSETS_PATH")
+
 
 class Login(CTkFrame):
 	def __init__(self, master=None):
@@ -16,7 +17,7 @@ class Login(CTkFrame):
 		self.controller = None
 
 
-		logo = CTkImage( dark_image=Image.open(PATH_LOGO), size=(300, 150) )
+		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.png"), size=(300, 150) )
 		self.widgets = {
 			"image": CTkLabel(master=self, image=logo, text = ""),
 			"buttons": {

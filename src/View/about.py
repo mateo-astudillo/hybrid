@@ -7,8 +7,8 @@ if __name__ == "__main__":
 	from customtkinter import CTk
 
 load_dotenv()
-PATH_LOGO = os.getenv("PATH_LOGO")
-PATH_INFO = os.getenv("PATH_INFO")
+STATIC_PATH = os.getenv("STATIC_PATH")
+ASSETS_PATH = os.getenv("ASSETS_PATH")
 
 
 class About(CTkFrame):
@@ -17,9 +17,9 @@ class About(CTkFrame):
 
 		self.controller = None
 
-		logo = CTkImage(dark_image=Image.open(PATH_LOGO), size=(300, 150))
+		logo = CTkImage(dark_image=Image.open(ASSETS_PATH + "logo.png"), size=(300, 150))
 		self.widgets = {
-			"image": CTkLabel(master=self, text="", image=PATH_LOGO),
+			"image": CTkLabel(master=self, text="", image=logo),
 			"title": CTkLabel(master=self, text="About Us"),
 			"text": CTkLabel(master=self, text=self.get_info()),
 		}
@@ -40,7 +40,7 @@ class About(CTkFrame):
 		)
 
 	def get_info(self):
-		with open(PATH_INFO, "r") as f:
+		with open(STATIC_PATH + "info.txt", "r") as f:
 			return f.read()
 
 	def pack_widgets(self):
