@@ -16,51 +16,26 @@ class Login(CTkFrame):
 		self.controller = None
 
 		logo = CTkImage( dark_image=Image.open(PATH_LOGO), size=(300, 150) )
-		self.image = CTkLabel(master=self, image=logo, text = "")
-
-
-		self.entrys = {
-			"username": CTkEntry(master=self, placeholder_text="Username"),
-			"password": CTkEntry(master=self, placeholder_text="Password", show="*"),
+		self.widgets = {
+			"image": CTkLabel(master=self, image=logo, text = ""),
+			"buttons": {
+				"login": CTkButton(master=self, text="Login", command=self.login),
+				"register": CTkButton(master=self, text="Register", command=self.register),
+			},
+			"entries":{
+				"username": CTkEntry(master=self, placeholder_text="Username"),
+				"password": CTkEntry(master=self, placeholder_text="Password", show="*")
+			}
 		}
-	
-		#! Buttons
-		self.login_button = CTkButton(
-			master = self,
-			text = "Login",
-			text_color = "black",
-			fg_color = "#C92C37",
-			hover_color = "#990510",
-			font = ("Open Sans ExtraBold", 14),
-			command = self.login,
-		)
-
-		self.register_button = CTkButton(
-			master = self,
-			text = "Register",
-			text_color = "#fff",
-			fg_color = "black",
-			hover_color = "#C92C37",
-			font = ("Open Sans Light", 14),
-			command = self.register,
-		)
-
 		self.set_config()
-
-		self.widgets = [
-			self.login_button,
-			self.register_button,
-		]
-
 		self.pack_widgets()
 
 	def set_controller(self, controller):
 		self.controller = controller
 
 	def set_config(self):
-		self.configure(fg_color="black")
-
-		for entry in self.entrys.values():
+		entries = self.widgets.get("entries")
+		for entry in entries.values():
 			entry.configure(
 				corner_radius=27,
 				border_width=0,
@@ -71,18 +46,36 @@ class Login(CTkFrame):
 				font=("Open Sans ExtraBold", 14),
 			)
 
-		for button in [self.login_button, self.register_button]:
+		buttons = self.widgets.get("buttons")
+		for button in buttons.values():
 			button.configure(
 				corner_radius=27,
-				border_width=0,
+				border_width=0,#todo: revisar
 			)
 
+		buttons.get("login").configure(
+			text_color = "black", #todo: revisar
+			fg_color = "#C92C37",
+			font = ("Open Sans ExtraBold", 14),
+			hover_color = "#990510",
+		)
+
+		buttons.get("register").configure(
+			text_color = "#fff",
+			fg_color = "black",
+			hover_color = "#C92C37",
+			font = ("Open Sans Light", 14),
+		)
+
 	def pack_widgets(self):
-		self.image.pack()
-		for entry in self.entrys.values():
-			entry.pack(padx=7, pady=15, ipadx=20)
-		for button in self.widgets:
-			button.pack(padx=7, pady=15, ipadx=20)
+		self.widgets.get("image").pack()
+		entries = list(self.widgets.get("entries").values())
+		buttons = list(self.widgets.get("buttons").values())
+
+		for widget in entries + buttons:
+			widget.pack(padx=7, pady=15, ipadx=20)
+
+
 
 
 	def login(self):

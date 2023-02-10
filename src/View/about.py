@@ -19,11 +19,11 @@ class About(CTkFrame):
 
 		logo = CTkImage(dark_image=Image.open(PATH_LOGO), size=(300, 150))
 		self.widgets = {
-			"image": CTkLabel(master=self, text="", image=logo),
+			"image": CTkLabel(master=self, text="", image=PATH_LOGO),
 			"title": CTkLabel(master=self, text="About Us"),
-			"text": CTkLabel(master=self, text=self.get_info()), 
+			"text": CTkLabel(master=self, text=self.get_info()),
 		}
-		
+
 		self.set_config()
 		self.pack_widgets()
 
@@ -38,10 +38,10 @@ class About(CTkFrame):
 			font = ("Open Sans Light", 16),
 			justify = "center",
 		)
-		
+
 	def get_info(self):
 		with open(PATH_INFO, "r") as f:
-	 	   return f.read()
+			return f.read()
 
 	def pack_widgets(self):
 		for widget in self.widgets.values():
