@@ -1,18 +1,20 @@
+from customtkinter import CTk
 from View.login import Login
 from View.menu import Menu
 from View.home import Home
 from View.about import About
 
 
-class View():
-	def __init__(self, master=None):
+class View(CTk):
+	def __init__(self):
+		super().__init__()
 
 		self.pages = {
-			"login": Login(master),
-			"menu": Menu(master),
-			"home": Home(master),
-			# "Stock": Stock(master),
-			"about": About(master),
+			"login": Login(self),
+			"menu": Menu(self),
+			"home": Home(self),
+			# "Stock": Stock(self),
+			"about": About(self),
 		}
 
 		self.current_page = self.pages.get("login")
@@ -23,12 +25,11 @@ class View():
 
 	def set_config(self):
 		for page in self.pages.values():
-
-			page.configure(width=800, height=900)
-		self.pages.get(Menu).conconfigure(width=400)
+			page.configure(bg_color="transparent", fg_color="transparent")
 
 	def show_login(self):
 		self.current_page.pack(ipadx=20, ipady=20)
+		self.resizable(False, False)
 
 	def show_menu(self):
 		self.pages.get("menu").pack(side="left", fill="y", expand=False)
@@ -40,3 +41,4 @@ class View():
 		self.current_page.pack_forget()
 		self.current_page = self.pages.get(name_page)
 		self.current_page.pack(ipadx=20, ipady=20, side="right", fill="both", expand=True)
+

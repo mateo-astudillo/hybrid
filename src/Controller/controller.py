@@ -8,6 +8,7 @@ class Controller:
 
 	def run(self):
 		self.view.show_login()
+		self.view.mainloop()
 
 	def login(self, username:str, password:str):
 		"""
@@ -18,6 +19,7 @@ class Controller:
 		self.view.hide_page("login")
 		self.view.show_menu()
 		self.view.show_page("home")
+		self.view.resizable(True, True)
 
 	def get_credentials(self):
 		return self.model.get_credentials()
