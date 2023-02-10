@@ -34,7 +34,7 @@ class Menu(CTkFrame):
 		items = (
 			("Menu", "🚗", self.toggle_collapse),
 			("Home", "🏠", lambda: self.show_page("home")),
-			("Stock", "🔎", None),
+			("Stock", "🔎", lambda: self.show_page("stock")),
 			("About", "👥", lambda: self.show_page("about")),
 		)
 		for name, icon, command in items:
