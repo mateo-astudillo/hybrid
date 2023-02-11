@@ -7,6 +7,7 @@ class Controller:
 		self.view = view
 
 	def run(self):
+		self.view.title("Login")
 		self.view.show_login()
 		self.view.mainloop()
 
@@ -17,6 +18,7 @@ class Controller:
 		"""
 		self.model.login(username, password)
 		self.view.hide_page("login")
+		self.view.title("Hybrid")
 		self.view.show_page("home")
 		self.view.show_menu()
 		self.view.resizable(True, True)
