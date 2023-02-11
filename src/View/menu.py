@@ -1,7 +1,13 @@
-from customtkinter import CTkFrame, CTkLabel, CTkButton
+from customtkinter import CTkFrame, CTkLabel, CTkButton, CTkImage
+from PIL import Image
+from dotenv import load_dotenv
+import os
 
 if __name__ == "__main__":
 	from customtkinter import CTk
+
+load_dotenv()
+ASSETS_PATH = os.getenv("ASSETS_PATH")
 
 
 class Menu(CTkFrame):
@@ -11,7 +17,32 @@ class Menu(CTkFrame):
 		self.controller = None
 
 		self.collapse = True
-		self.items = []
+		self.widgets = {
+			"menu": {
+				"button": None,
+				"name": "menu",
+				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "menu.png"), size=(20,20)),
+				"function": self.toggle_collapse
+			},
+			"home": {
+				"button": None,
+				"name": "Home",
+				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "home.png"), size=(20,20) ),
+				"function": lambda: self.show_page("home")
+			},
+			"stock": {
+				"button": None,
+				"name": "Stock",
+				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "stock.png"), size=(20,20) ),
+				"function": lambda: self.show_page("stock")
+			},
+			"about": {
+				"button": None,
+				"name": "About",
+				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "about.png"), size=(20,20) ),
+				"function": lambda: self.show_page("about")
+			},
+		}
 
 		self.set_items()
 		self.set_config()
@@ -21,44 +52,41 @@ class Menu(CTkFrame):
 		self.controller = controller
 
 	def set_config(self):
-		for item in self.items:
-			item.get("button").configure(
-				text_color = "white",
-				fg_color = "transparent",
-				hover_color = "#990510",
+		for widget in self.widgets.values():
+			widget.get("button").configure(
+				# width = 20,
+				
+				fg_color = "white",
+				hover_color = "gray",
 				corner_radius=0,
 				font = ("Open Sans Light", 24),
+				compound = "left",
+				anchor = "w"
 			)
 
 	def set_items(self):
-		items = (
-			("Menu", "🚗", self.toggle_collapse),
-			("Home", "🏠", lambda: self.show_page("home")),
-			("Stock", "🔎", None),
-			("About", "👥", lambda: self.show_page("about")),
-		)
-		for name, icon, command in items:
-			self.create_item(name, icon, command)
 
-	def create_item(self, name:str, icon:str, command):
-		item = {
-			"button": CTkButton(master=self, text=f"{icon}", command=command, width=5),
-			"icon": icon,
-			"name": name,
-		}
-		self.items.append(item)
+		for widget in self.widgets.values():
+			widget.update( {
+				"button": CTkButton(
+					master = self,
+					image = widget.get("icon"),
+					text = "",
+					command = widget.get("function")
+				)
+			} )
 
 	def pack_items(self):
-		for item in self.items:
-			item.get("button").pack(fill="both", ipadx=20, ipady=5)
+		for widget in self.widgets.values():
+			widget.get("button").pack(fill="both", ipady=5)
 
 	def toggle_collapse(self):
 		if self.collapse:
-			for item in self.items:
-				item.get("button").configure(text=f"{item.get('icon')} {item.get('name')}")
+			for widget in self.widgets.values():
+				widget.get("button").configure(text=widget.get("name"))
 		else:
-			for item in self.items:
-				item.get("button").configure(text=f"{item.get('icon')}")
+			for widget in self.widgets.values():
+				widget.get("button").configure(text="")
 		self.collapse = not self.collapse
 
 	def show_page(self, name_page):
