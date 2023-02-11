@@ -9,13 +9,19 @@ if __name__ == "__main__":
 load_dotenv()
 ASSETS_PATH = os.getenv("ASSETS_PATH")
 
+# Colors
+BLACK = "#000000"
+BACKGROUND = "#8D99AE"
+WHITE = "#EDF2F4"
+SECONDARY = "#EF233C"
+PRIMARY = "#D90429"
+
 
 class Login(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
 
 		self.controller = None
-
 
 		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.png"), size=(300, 150) )
 		self.widgets = {
@@ -29,6 +35,7 @@ class Login(CTkFrame):
 				"password": CTkEntry(master=self, placeholder_text="Password", show="*")
 			}
 		}
+
 		self.set_config()
 		self.pack_widgets()
 
@@ -39,33 +46,33 @@ class Login(CTkFrame):
 		entries = self.widgets.get("entries")
 		for entry in entries.values():
 			entry.configure(
-				corner_radius=27,
-				border_width=0,
-				placeholder_text_color="black",
-				text_color="black",
-				fg_color="#fff",
-				justify="center",
-				font=("Open Sans ExtraBold", 14),
+				text_color = BLACK,
+				fg_color = WHITE,
+				placeholder_text_color = BLACK,
+				corner_radius = 27,
+				border_width = 0,
+				justify = "center",
+				font = ("Open Sans ExtraBold", 14),
 			)
 
 		buttons = self.widgets.get("buttons")
 		for button in buttons.values():
 			button.configure(
-				corner_radius=27,
-				border_width=0,#todo: revisar
+				corner_radius = 27,
+				border_width = 0, #todo: revisar
 			)
 
 		buttons.get("login").configure(
-			text_color = "black", #todo: revisar
-			fg_color = "#C92C37",
+			text_color = BLACK, #todo: revisar
+			fg_color = PRIMARY,
+			hover_color = SECONDARY,
 			font = ("Open Sans ExtraBold", 14),
-			hover_color = "#990510",
 		)
 
 		buttons.get("register").configure(
-			text_color = "#fff",
-			fg_color = "black",
-			hover_color = "#C92C37",
+			text_color = WHITE,
+			fg_color = BLACK,
+			hover_color = SECONDARY,
 			font = ("Open Sans Light", 14),
 		)
 
@@ -76,9 +83,6 @@ class Login(CTkFrame):
 
 		for widget in entries + buttons:
 			widget.pack(padx=7, pady=15, ipadx=20)
-
-
-
 
 	def login(self):
 		username = self.widgets.get("entries").get("username")

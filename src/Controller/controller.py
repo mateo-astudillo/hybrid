@@ -17,8 +17,8 @@ class Controller:
 		"""
 		self.model.login(username, password)
 		self.view.hide_page("login")
-		self.view.show_menu()
 		self.view.show_page("home")
+		self.view.show_menu()
 		self.view.resizable(True, True)
 
 	def get_credentials(self):

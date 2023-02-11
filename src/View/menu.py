@@ -9,85 +9,78 @@ if __name__ == "__main__":
 load_dotenv()
 ASSETS_PATH = os.getenv("ASSETS_PATH")
 
+# Colors
+BLACK = "#000000"
+BACKGROUND = "#8D99AE"
+WHITE = "#EDF2F4"
+SECONDARY = "#EF233C"
+PRIMARY = "#D90429"
+
 
 class Menu(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
 
 		self.controller = None
-
-		self.collapse = True
+		self.collapse = False
 		self.widgets = {
-			"menu": {
-				"button": None,
-				"name": "menu",
-				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "menu.png"), size=(20,20)),
-				"function": self.toggle_collapse
-			},
 			"home": {
 				"button": None,
 				"name": "Home",
-				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "home.png"), size=(20,20) ),
-				"function": lambda: self.show_page("home")
+				"image_path": ASSETS_PATH + "home.png",
+				"function": lambda: self.show_page("home"),
 			},
 			"stock": {
 				"button": None,
 				"name": "Stock",
-				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "stock.png"), size=(20,20) ),
-				"function": lambda: self.show_page("stock")
+				"image_path": ASSETS_PATH + "stock.png",
+				"function": lambda: self.show_page("stock"),
 			},
 			"about": {
 				"button": None,
 				"name": "About",
-				"icon": CTkImage( dark_image=Image.open(ASSETS_PATH + "about.png"), size=(20,20) ),
-				"function": lambda: self.show_page("about")
+				"image_path": ASSETS_PATH + "about.png",
+				"function": lambda: self.show_page("about"),
 			},
 		}
 
 		self.set_items()
-		self.set_config()
+		# self.set_config()
 		self.pack_items()
 
 	def set_controller(self, controller):
 		self.controller = controller
 
 	def set_config(self):
+		self.configure(fg_color=BACKGROUND)
 		for widget in self.widgets.values():
 			widget.get("button").configure(
-				# width = 20,
-				
-				fg_color = "white",
-				hover_color = "gray",
-				corner_radius=0,
-				font = ("Open Sans Light", 24),
-				compound = "left",
-				anchor = "w"
+				text_color = BLACK,
+				fg_color = BACKGROUND,
+				hover_color = WHITE,
+				corner_radius = 0,
+				font = ("Open Sans Light", 20),
 			)
 
 	def set_items(self):
 		for widget in self.widgets.values():
-			widget.update( {
+			widget.update({
 				"button": CTkButton(
 					master = self,
-					image = widget.get("icon"),
-					text = "",
-					command = widget.get("function")
+					text = widget.get("name"),
+					image = CTkImage(
+						dark_image = Image.open( widget.get("image_path") ),
+						size = (20,20)
+					),
+					command = widget.get("function"),
+					anchor = "w",
+					width = 100,
 				)
-			} )
-
+			})
 
 	def pack_items(self):
 		for widget in self.widgets.values():
-			widget.get("button").pack(fill="both", ipady=5)
-
-	def toggle_collapse(self):
-		if self.collapse:
-			for widget in self.widgets.values():
-				widget.get("button").configure(text=widget.get("name"))
-		else:
-			for widget in self.widgets.values():
-				widget.get("button").configure(text="")
-		self.collapse = not self.collapse
+			widget.get("button").pack(fill="both", expand=False)
 
 	def show_page(self, name_page):
 		self.controller.show_page(name_page)
