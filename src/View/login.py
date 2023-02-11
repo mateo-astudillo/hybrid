@@ -90,7 +90,7 @@ class Login(CTkFrame):
 		self.controller.login(username.get(), password.get())
 
 	def register(self):
-		pass
+		self.controller.show_page("register")
 
 	def login_error(self):
 		CTkLabel(

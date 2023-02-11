@@ -26,7 +26,7 @@ class Controller:
 			self.view.pages.get("login").login_error()
 
 	def register(self, username:str, password:str):
-		self.model.users_manager.regiter(username, password)
+		self.model.users_manager.register(username, password)
 		self.view.show_page("login")
 
 	def show_page(self, name):
