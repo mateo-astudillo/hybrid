@@ -1,26 +1,24 @@
+from passlib.hash import sha256_crypt as sha
+from dotenv import load_dotenv
+from .users import UsersManager
+from .cars import CarsManager
 import sqlite3
-import bcrypt
+import os
 
-PATH_DB = "data.db"
+load_dotenv()
+SALT = os.getenv("SALT")
+USERS_DB = os.getenv("USERS_DB")
+CARS_DB = os.getenv("CARS_DB")
 
 class Model:
 	def __init__(self):
-		self.connection = sqlite3.connect(database=":memory:")
-		self.cursor = self.connection.cursor()
-		self.cursor.execute("CREATE TABLE tokens ( username varchar(50), password varchar(64) );")
-
-		self.controller = None
+		self.users_manager = UsersManager()
+		self.cars_manager = CarsManager()
 
 	def set_controller(self, controller):
-		self.controller = controller
+		self.cars_manager.set_controller(controller)
+		self.users_manager.set_controller(controller)
 
-	def login(self, username:str, password:str):
-		salt = bcrypt.gensalt()
-		hash = bcrypt.hashpw(password.encode("utf-8"), salt)
-		self.cursor.execute("INSERT INTO tokens VALUES(?, ?);", (username, hash) )
 
-	def get_credentials(self):
-		username = self.cursor.execute("SELECT username FROM tokens;").fetchone()
-		password = self.cursor.execute("SELECT password FROM tokens;").fetchone()
-		return (username, password)
+
 		

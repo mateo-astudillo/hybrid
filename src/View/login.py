@@ -59,11 +59,11 @@ class Login(CTkFrame):
 		for button in buttons.values():
 			button.configure(
 				corner_radius = 27,
-				border_width = 0, #todo: revisar
+				border_width = 0,
 			)
 
 		buttons.get("login").configure(
-			text_color = BLACK, #todo: revisar
+			text_color = BLACK,
 			fg_color = PRIMARY,
 			hover_color = SECONDARY,
 			font = ("Open Sans ExtraBold", 14),
@@ -91,6 +91,15 @@ class Login(CTkFrame):
 
 	def register(self):
 		pass
+
+	def login_error(self):
+		CTkLabel(
+			self,
+			text = "Incorrect username or password",
+			text_color = SECONDARY,
+			fg_color = BLACK,
+			corner_radius = 27
+		).pack(side="bottom", padx=20, pady=10)
 
 
 if __name__ == "__main__":

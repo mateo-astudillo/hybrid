@@ -16,14 +16,6 @@ class Home(CTkFrame):
 			fg_color="transparent"
 		)
 		self.home_label.pack(padx=50, pady=20)
-
-		self.credentials_button = CTkButton(
-			master=self, text="Get Credentials",
-			command=self.get_credentials,
-			fg_color="transparent"
-		)
-		self.credentials_button.pack(padx=10)
-
 		self.credentials_label = CTkLabel(master=self, text="Credentials")
 		self.credentials_label.pack(padx=10)
 
@@ -32,12 +24,6 @@ class Home(CTkFrame):
 
 	def show_menu(self):
 		self.pack()
-
-	def get_credentials(self):
-		credentials = self.controller.get_credentials()
-		username, hash = credentials
-		token = f"{username}, {hash}"
-		self.credentials_label.configure(text=token)
 
 
 if __name__ == "__main__":
