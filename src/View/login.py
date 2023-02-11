@@ -88,6 +88,11 @@ class Login(CTkFrame):
 		username = self.widgets.get("entries").get("username")
 		password = self.widgets.get("entries").get("password")
 		self.controller.login(username.get(), password.get())
+		self.clear_entries()
+
+	def clear_entries(self):
+		for entry in self.widgets.get("entries").values():
+			entry.delete(0,"end")
 
 	def register(self):
 		self.controller.show_page("register")
