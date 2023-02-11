@@ -65,7 +65,6 @@ class Menu(CTkFrame):
 			)
 
 	def set_items(self):
-
 		for widget in self.widgets.values():
 			widget.update( {
 				"button": CTkButton(
@@ -75,6 +74,7 @@ class Menu(CTkFrame):
 					command = widget.get("function")
 				)
 			} )
+
 
 	def pack_items(self):
 		for widget in self.widgets.values():

@@ -3,6 +3,7 @@ from View.login import Login
 from View.menu import Menu
 from View.home import Home
 from View.about import About
+from View.stock import Stock
 
 
 class View(CTk):
@@ -13,7 +14,7 @@ class View(CTk):
 			"login": Login(self),
 			"menu": Menu(self),
 			"home": Home(self),
-			# "Stock": Stock(self),
+			"stock": Stock(self),
 			"about": About(self),
 		}
 
@@ -35,7 +36,7 @@ class View(CTk):
 
 	def show_menu(self):
 		self.pages.get("menu").pack(side="left", fill="y", expand=False)
-	
+
 	def hide_page(self, name_page:str):
 		self.pages.get(name_page).pack_forget()
 

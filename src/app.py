@@ -12,7 +12,6 @@ class App():
 
 		self.model.set_controller(self.controller)
 		self.view.set_controller(self.controller)
-
 		self.controller.run()
 
 
