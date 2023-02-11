@@ -1,5 +1,6 @@
 from customtkinter import CTk
 from View.login import Login
+from View.register import Register
 from View.menu import Menu
 from View.home import Home
 from View.about import About
@@ -18,6 +19,7 @@ class View(CTk):
 
 		self.pages = {
 			"login": Login(self),
+			"register": Register(self),
 			"menu": Menu(self),
 			"home": Home(self),
 			"stock": Stock(self),
