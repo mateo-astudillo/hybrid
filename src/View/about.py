@@ -14,6 +14,7 @@ ASSETS_PATH = os.getenv("ASSETS_PATH")
 class About(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
+
 		self.widgets = {
 			"title": CTkLabel(master=self, text="About Us"),
 			"text": CTkLabel(master=self, text=self.get_info()),

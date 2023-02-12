@@ -1,8 +1,5 @@
 from customtkinter import CTkFrame, CTkEntry, CTkButton
 
-if __name__ == "__main__":
-	from customtkinter import CTk
-
 
 class Register(CTkFrame):
 	def __init__(self, master=None):
@@ -10,10 +7,11 @@ class Register(CTkFrame):
 
 		self.controller = None
 
+
 		self.buttons = {
 			"register": CTkButton(master=self, text="Register", command=self.register),
-			"cancel": CTkButton(master=self, text="Cancel", command=self.cancel),
-		}
+			"cancel": CTkButton(master=self, text="Cancel", command=self.cancel)
+    }
 
 		self.entries = {
 			"username": CTkEntry(master=self, placeholder_text="Username"),
@@ -25,6 +23,7 @@ class Register(CTkFrame):
 		self.controller = controller
 
 	def pack_widgets(self):
+
 		entries = list(self.entries.values())
 		buttons = list(self.buttons.values())
 
@@ -34,6 +33,7 @@ class Register(CTkFrame):
 	def register(self):
 		username = self.entries.get("username")
 		password = self.entries.get("password")
+
 		self.controller.register(username.get(), password.get())
 		self.clear_entries()
 
@@ -46,8 +46,8 @@ class Register(CTkFrame):
 		pass
 
 
-
 if __name__ == "__main__":
+  from customtkinter import CTk
 	root = CTk()
 	register = Register(root)
 	register.pack()
