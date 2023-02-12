@@ -23,7 +23,7 @@ class Login(CTkFrame):
 
 		self.controller = None
 
-		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.png"), size=(300, 150) )
+		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.jpg"), size=(300, 150) )
 		self.image = {
 			"image": CTkLabel(master=self, image=logo, text = ""),
 		}
