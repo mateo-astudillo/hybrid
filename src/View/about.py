@@ -15,29 +15,15 @@ class About(CTkFrame):
 	def __init__(self, master=None):
 		super().__init__(master)
 
-		self.controller = None
-
-		logo = CTkImage(dark_image=Image.open(ASSETS_PATH + "logo.jpg"), size=(300, 150))
 		self.widgets = {
-			"image": CTkLabel(master=self, text="", image=logo),
 			"title": CTkLabel(master=self, text="About Us"),
 			"text": CTkLabel(master=self, text=self.get_info()),
 		}
-
-		self.set_config()
+		self.controller = None
 		self.pack_widgets()
 
 	def set_controller(self, controller):
 		self.controller = controller
-
-	def set_config(self):
-		self.widgets.get("title").configure(
-			font = ("Open Sans Light", 20),
-		)
-		self.widgets.get("text").configure(
-			font = ("Open Sans Light", 16),
-			justify = "center",
-		)
 
 	def get_info(self):
 		with open(STATIC_PATH + "info.txt", "r") as f:

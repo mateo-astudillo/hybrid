@@ -32,7 +32,7 @@ class Controller:
 			self.model.users_manager.register(username, password)
 			self.view.show_page("login")
 		else:
-			self.view.error("Error with symbols",self.view.pages.get("register").widgets.get("buttons").values())
+			self.view.error("Error with symbols",self.view.pages.get("register").buttons.values())
 
 	def show_page(self, name):
 		self.view.show_page(name)
