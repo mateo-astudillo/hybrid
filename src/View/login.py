@@ -15,7 +15,7 @@ BACKGROUND = "#8D99AE"
 WHITE = "#EDF2F4"
 SECONDARY = "#EF233C"
 PRIMARY = "#D90429"
-
+PRIMARY_D = "#93021B" #! MISMO COLOR PERO ACA EN EL LOGIN TAMBIEN (ESTOS DEBERIAMOS PONERLOS EN OTRO LADO)
 
 class Login(CTkFrame):
 	def __init__(self, master=None):
@@ -60,6 +60,7 @@ class Login(CTkFrame):
 			button.configure(
 				corner_radius = 27,
 				border_width = 0,
+				text_color_disabled = "black"
 			)
 
 		buttons.get("login").configure(
@@ -97,14 +98,6 @@ class Login(CTkFrame):
 	def register(self):
 		self.controller.show_page("register")
 
-	def login_error(self):
-		CTkLabel(
-			self,
-			text = "Incorrect username or password",
-			text_color = SECONDARY,
-			fg_color = BLACK,
-			corner_radius = 27
-		).pack(side="bottom", padx=20, pady=10)
 
 
 if __name__ == "__main__":

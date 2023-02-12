@@ -1,5 +1,6 @@
 from View import View
 from Model import Model
+from re import match
 
 class Controller:
 	def __init__(self, model:Model, view:View):
@@ -16,6 +17,7 @@ class Controller:
 		username
 		password
 		"""
+		# if match("^(?![-._])(?!.*[_.-]{2})[\w.-]{6,30}(?<![-._])$",username) is not None:
 		if self.model.users_manager.login(username, password):
 			self.view.hide_page("login")
 			self.view.title("Hybrid")
@@ -23,11 +25,14 @@ class Controller:
 			self.view.show_menu()
 			self.view.resizable(True, True)
 		else:
-			self.view.pages.get("login").login_error()
+			self.view.error("Incorrect Password or Username")
 
 	def register(self, username:str, password:str):
-		self.model.users_manager.register(username, password)
-		self.view.show_page("login")
+		if match("^(?![-._])(?!.*[_.-]{2})[\w.-]{6,30}(?<![-._])$",username) is not None:
+			self.model.users_manager.register(username, password)
+			self.view.show_page("login")
+		else:
+			self.view.error("Error with symbols",self.view.pages.get("register").widgets.get("buttons").values())
 
 	def show_page(self, name):
 		self.view.show_page(name)

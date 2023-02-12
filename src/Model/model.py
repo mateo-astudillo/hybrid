@@ -18,7 +18,3 @@ class Model:
 	def set_controller(self, controller):
 		self.cars_manager.set_controller(controller)
 		self.users_manager.set_controller(controller)
-
-
-
-		
