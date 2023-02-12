@@ -33,7 +33,7 @@ class Register(CTkFrame):
 
 	def register(self):
 		username = self.entries.get("username")
-		password = self.get("password")
+		password = self.entries.get("password")
 		self.controller.register(username.get(), password.get())
 		self.clear_entries()
 

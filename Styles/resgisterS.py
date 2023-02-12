@@ -13,7 +13,7 @@ SECONDARY = "#EF233C"
 PRIMARY = "#D90429"
 PRIMARY_D = "#93021B"
 
-class loginS():
+class registerS():
 	def __init__(self):
 		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.jpg"), size=(300, 150) )
 		self.image = {
