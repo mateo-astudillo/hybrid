@@ -21,6 +21,7 @@ class loginS():
 			}
 		self.set_config()
 		# self.image.get("image").pack()
+
 	def set_config(self):
 		for entry in self.entries.values():
 			entry.configure(
@@ -37,17 +38,17 @@ class loginS():
 			button.configure(
 				corner_radius = 27,
 				border_width = 0,
-				text_color_disabled = "black"
+				text_color_disabled = PRIMARY_D
 			)
 
-		self.buttons.get("login").configure(
+		self.buttons.get("register").configure(
 			text_color = BLACK,
 			fg_color = PRIMARY,
 			hover_color = SECONDARY,
 			font = ("Open Sans ExtraBold", 14),
 		)
 
-		self.buttons.get("register").configure(
+		self.buttons.get("cancel").configure(
 			text_color = WHITE,
 			fg_color = BLACK,
 			hover_color = SECONDARY,

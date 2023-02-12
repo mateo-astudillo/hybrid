@@ -32,7 +32,6 @@ class Login(CTkFrame):
 		self.controller = controller
 
 	def pack_widgets(self):
-		# self.image.get("image").pack()
 		entries = list(self.entries.values())
 		buttons = list(self.buttons.values())
 
