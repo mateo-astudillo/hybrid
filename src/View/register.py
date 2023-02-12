@@ -24,10 +24,10 @@ class Register(CTkFrame):
 
 		self.controller = None
 
-		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.jpg"), size=(300, 150) )
-		self.image = {
-			"image": CTkLabel(master=self, image=logo, text = ""),
-		}
+		# logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.jpg"), size=(300, 150) )
+		# self.image = {
+		# 	"image": CTkLabel(master=self, image=logo, text = ""),
+		# }
 
 		self.buttons = {
 			"register": CTkButton(master=self, text="Register", command=self.register),
@@ -39,7 +39,7 @@ class Register(CTkFrame):
 			"password": CTkEntry(master=self, placeholder_text="Password", show="*")
 		}
 
-		self.set_config()
+		# self.set_config()
 		self.pack_widgets()
 
 	def set_controller(self, controller):
@@ -79,7 +79,7 @@ class Register(CTkFrame):
 		)
 
 	def pack_widgets(self):
-		self.image.get("image").pack()
+		# self.image.get("image").pack()
 		entries = list(self.entries.values())
 		buttons = list(self.buttons.values())
 

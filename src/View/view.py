@@ -29,7 +29,7 @@ class View(CTk):
 
 		self.current_page = self.pages.get("login")
 
-		self.set_config()
+		#self.set_config()
 
 	def set_controller(self, controller):
 		for page in self.pages.values():
