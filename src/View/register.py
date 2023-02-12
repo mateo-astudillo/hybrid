@@ -15,8 +15,7 @@ BACKGROUND = "#8D99AE"
 WHITE = "#EDF2F4"
 SECONDARY = "#EF233C"
 PRIMARY = "#D90429"
-PRIMARY_D = "#93021B" 
-#! ESTE COLOR ES COMO EL PRIMARIO PARA MAS OCURO, POR QUE SI LE PONIA BLANCO, EL RETURN TO LOGIN NO SE VEIA, Y SI LE PONIA EL ROJO EL REGISTER NO SE VEIA
+PRIMARY_D = "#93021B"
 
 
 class Register(CTkFrame):
@@ -98,6 +97,7 @@ class Register(CTkFrame):
 			entry.delete(0,"end")
 
 	def cancel(self):
+		self.controller.show_page("login")
 		pass
 
 
