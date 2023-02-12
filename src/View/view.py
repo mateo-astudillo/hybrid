@@ -59,17 +59,17 @@ class View(CTk):
 		for button in buttons:
 			button.configure(state="disabled")
 
-		message_error = CTkLabel( #!Le cambie de message a message_error porque message lo usabamos en la property
+		message_error = CTkLabel(
 			self.current_page,
 			text = message,
 			text_color = SECONDARY,
 			fg_color = BLACK,
 			corner_radius = 27
 		)
-		message_error.pack(side="bottom", padx=20, pady=10) #! Le hago el pack por separado, porque si no message_error guardaba NONE, por eso no hacia pack_forget()
-		self.after(1000,lambda:self.set_default(message_error,buttons)) #! Uso after por que esta hecho para esto, pero solo funciona en master, es decir ahora en register
+		message_error.pack(side="bottom", padx=20, pady=10)
+		self.after(1000,lambda:self.set_default(message_error,buttons))
 
-	def set_default(self,message_error,buttons): #!Esta funcion la podes quitar y poner esto arriba, pero a after le tenes que pasar el tiempo y una funcion
+	def set_default(self,message_error,buttons):
 		for button in buttons:
 			button.configure(state="normal")
 		message_error.pack_forget()
