@@ -25,16 +25,18 @@ class Register(CTkFrame):
 		self.controller = None
 
 		logo = CTkImage( dark_image=Image.open(ASSETS_PATH + "logo.jpg"), size=(300, 150) )
-		self.widgets = {
+		self.image = {
 			"image": CTkLabel(master=self, image=logo, text = ""),
-			"buttons": {
-				"register": CTkButton(master=self, text="Register", command=self.register),
-				"cancel": CTkButton(master=self, text="Return to login", command=self.cancel),
-			},
-			"entries":{
-				"username": CTkEntry(master=self, placeholder_text="Username"),
-				"password": CTkEntry(master=self, placeholder_text="Password", show="*")
-			}
+		}
+
+		self.buttons = {
+			"register": CTkButton(master=self, text="Register", command=self.register),
+			"cancel": CTkButton(master=self, text="Cancel", command=self.cancel),
+		}
+
+		self.entries = {
+			"username": CTkEntry(master=self, placeholder_text="Username"),
+			"password": CTkEntry(master=self, placeholder_text="Password", show="*")
 		}
 
 		self.set_config()
@@ -44,8 +46,7 @@ class Register(CTkFrame):
 		self.controller = controller
 
 	def set_config(self):
-		entries = self.widgets.get("entries")
-		for entry in entries.values():
+		for entry in self.entries.values():
 			entry.configure(
 				text_color = BLACK,
 				fg_color = WHITE,
@@ -56,22 +57,21 @@ class Register(CTkFrame):
 				font = ("Open Sans ExtraBold", 14),
 			)
 
-		buttons = self.widgets.get("buttons")
-		for button in buttons.values():
+		for button in self.buttons.values():
 			button.configure(
 				corner_radius = 27,
 				border_width = 0,
 				text_color_disabled = PRIMARY_D
 			)
 
-		buttons.get("register").configure(
+		self.buttons.get("register").configure(
 			text_color = BLACK,
 			fg_color = PRIMARY,
 			hover_color = SECONDARY,
 			font = ("Open Sans ExtraBold", 14),
 		)
 
-		buttons.get("cancel").configure(
+		self.buttons.get("cancel").configure(
 			text_color = WHITE,
 			fg_color = BLACK,
 			hover_color = SECONDARY,
@@ -79,21 +79,21 @@ class Register(CTkFrame):
 		)
 
 	def pack_widgets(self):
-		self.widgets.get("image").pack()
-		entries = list(self.widgets.get("entries").values())
-		buttons = list(self.widgets.get("buttons").values())
+		self.image.get("image").pack()
+		entries = list(self.entries.values())
+		buttons = list(self.buttons.values())
 
 		for widget in entries + buttons:
 			widget.pack(padx=7, pady=15, ipadx=20)
 
 	def register(self):
-		username = self.widgets.get("entries").get("username")
-		password = self.widgets.get("entries").get("password")
+		username = self.entries.get("username")
+		password = self.get("password")
 		self.controller.register(username.get(), password.get())
 		self.clear_entries()
 
 	def clear_entries(self):
-		for entry in self.widgets.get("entries").values():
+		for entry in self.entries.values():
 			entry.delete(0,"end")
 
 	def cancel(self):
