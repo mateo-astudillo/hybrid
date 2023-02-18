@@ -27,7 +27,7 @@ class Register(CTkFrame):
 		buttons = list(self.buttons.values())
 
 		for widget in entries + buttons:
-			widget.pack(padx=10, pady=10, ipadx=10, ipady=10)
+			widget.pack(padx=10, pady=10, ipadx=10)
 
 	def register(self):
 		username = self.entries.get("username")

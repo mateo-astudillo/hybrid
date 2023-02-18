@@ -5,8 +5,7 @@ import os
 
 load_dotenv()
 SALT = os.getenv("SALT")
-USERS_DB = os.getenv("USERS_DB")
-CARS_DB = os.getenv("CARS_DB")
+DATABASE = os.getenv("DATABASE")
 
 
 class UsersManager():
@@ -31,17 +30,8 @@ class UsersManager():
 		self.cursor = None
 
 	def create_table(self):
+		query = ""
 
-		# sql = 'CREATE TABLE IF NOT EXISTS users (\
-		# 	ID INTEGER NOT NULL,\
-		# 	USERNAME varchar(64) UNIQUE,\
-		# 	PASSWORD varchar(43),\
-		# 	PRIMARY KEY(ID)\
-		# );'
-		sql = 'CREATE TABLE IF NOT EXISTS users (\
-			USERNAME varchar(64) UNIQUE,\
-			PASSWORD varchar(86)\
-		);'
 		self.connect()
 		self.cursor.execute(sql)
 		self.disconnect()
