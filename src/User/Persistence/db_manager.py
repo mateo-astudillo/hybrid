@@ -1,11 +1,14 @@
 from sqlite3 import connect, IntegrityError
 from passlib.hash import sha256_crypt as sha
+from dotenv import load_dotenv
+from os import getenv
 
-SALT="paco"
+load_dotenv()
+SALT = getenv("SALT")
 
 
 class DBManager:
-	def __init__(self, path_db=":memory:"):
+	def __init__(self, path_db:str):
 		self.path_db = path_db
 
 	def execute(self, query:str):
@@ -57,7 +60,7 @@ class DBManager:
 		query = "SELECT * FROM users WHERE username = (?) and password = (?)"
 		password_hashed = self.hash(password)
 		result = self.execute_select( query, (username, password_hashed) )
-		return result is not None
+		return bool(result)
 
 	def remove(self, username:str) -> bool:
 		query = "DELETE FROM users WHERE username = (?)"
@@ -99,6 +102,5 @@ class User:
 
 if __name__ == "__main__":
 	print("DBManager")
-	dbm = DBManager("users.db")
-	dbm.create_table()
+	# dbm = DBManager("users.db")
 
